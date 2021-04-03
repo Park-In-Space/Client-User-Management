@@ -18,7 +18,7 @@ class Server {
     }
 
     config(){
-        const MONGO_URI = 'mongodb://localhost/usersDBmongodb+srv://catalina:camo2004@cluster0.o3ed9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+        const MONGO_URI = 'mongodb+srv://catalina:camo2004@cluster0.o3ed9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
         mongoose.set('useFindAndModify', true);
         mongoose.connect(MONGO_URI || process.env.MONGODB_URL , {
             useNewUrlParser: true,
