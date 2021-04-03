@@ -28,7 +28,7 @@ class Server {
             .then(db => console.log('DB is connected'));
 
         // Settings
-        this.app.set('port', process.env.PORT || 3000);
+        this.app.set('port', process.env.PORT || 3001);
 
         // Middlewares
         this.app.use(morgan('dev'));
