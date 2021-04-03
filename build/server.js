@@ -18,7 +18,7 @@ class Server {
         this.routes();
     }
     config() {
-        const MONGO_URI = 'mongodb://localhost/usersDB';
+        const MONGO_URI = 'mongodb://localhost/usersDBmongodb+srv://catalina:camo2004@cluster0.o3ed9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
         mongoose_1.default.set('useFindAndModify', true);
         mongoose_1.default.connect(MONGO_URI || process.env.MONGODB_URL, {
             useNewUrlParser: true,
@@ -27,7 +27,7 @@ class Server {
         })
             .then(db => console.log('DB is connected'));
         // Settings
-        this.app.set('port', process.env.PORT || 3000);
+        this.app.set('port', process.env.PORT || 3001);
         // Middlewares
         this.app.use(morgan_1.default('dev'));
         this.app.use(express_1.default.json());
