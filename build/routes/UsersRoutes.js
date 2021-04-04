@@ -27,7 +27,7 @@ class UserRoutes {
     }
     getUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield User_1.default.findOne({ email: req.params.email });
+            const user = yield User_1.default.findOne({ userId: req.params.userId });
             res.json(user);
         });
     }
@@ -40,24 +40,31 @@ class UserRoutes {
     }
     updateUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { email } = req.params;
-            const user = yield User_1.default.findOneAndUpdate({ email }, req.body, { new: true });
+            const { userId } = req.params;
+            const user = yield User_1.default.findOneAndUpdate({ userId }, req.body, { new: true });
             res.json(user);
         });
     }
     deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { email } = req.params;
-            yield User_1.default.findOneAndDelete({ email });
+            const { userId } = req.params;
+            yield User_1.default.findOneAndDelete({ userId });
             res.json({ response: 'User Deleted succsessfully' });
+        });
+    }
+    deleteAllUsers(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const users = yield User_1.default.deleteMany();
+            res.json({ response: 'All users deleted succsesfully' });
         });
     }
     routes() {
         this.router.get('/', this.getUsers);
-        this.router.get('/:email', this.getUser);
-        this.router.post('/', this.createUser);
-        this.router.put('/:email', this.updateUser);
-        this.router.delete('/:email', this.deleteUser);
+        this.router.get('/:userId', this.getUser);
+        this.router.post('/createUser', this.createUser);
+        this.router.put('/:userId', this.updateUser);
+        this.router.delete('/:userId', this.deleteUser);
+        this.router.delete('/', this.deleteAllUsers);
     }
 }
 const userRoutes = new UserRoutes();

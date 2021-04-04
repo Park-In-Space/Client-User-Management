@@ -1,6 +1,12 @@
-import {Schema, model} from 'mongoose'
+import {Schema, model, Mongoose} from 'mongoose'
 
+const mongoose = require('mongoose');
 const UserSchema = new Schema({
+    userId: {
+        type: String,
+        required: true,
+        unique: true
+    },
     name: {
         type: String,
         required: true
@@ -9,10 +15,6 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    },
-    password: {
-        type: String,
-        required: true
     },
     age: {
         type: Number,

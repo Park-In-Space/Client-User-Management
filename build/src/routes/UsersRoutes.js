@@ -55,7 +55,7 @@ class UserRoutes {
     routes() {
         this.router.get('/', this.getUsers);
         this.router.get('/:email', this.getUser);
-        this.router.post('/', this.createUser);
+        this.router.post('/createUser', this.createUser);
         this.router.put('/:email', this.updateUser);
         this.router.delete('/:email', this.deleteUser);
     }
