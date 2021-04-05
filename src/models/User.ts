@@ -27,7 +27,10 @@ const UserSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now()
-    }
+    }},
+    {
+        versionKey: false 
+    
 });
 
 export default model('User', UserSchema);

@@ -1,0 +1,161 @@
+swagger: "2.0"
+info:
+  description: "This microservice is in charge of managing the client users of the application."
+  version: "1.0.0"
+  title: "Client-User-Management"
+  contact:
+    email: "caldanam@unal.edu.co"
+basePath: "/v2"
+tags:
+- name: "user"
+  description: "Operations about user"
+  
+schemes:
+- "https"
+- "http"
+
+paths:
+  /api/users/createUser:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+            
+  /api/users:
+    get:
+      tags:
+      - "user"
+      summary: "Find all users"
+      description: "Returns all users"
+      operationId: "getUsers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items: 
+              $ref: "#/definitions/User"
+    delete:
+      tags:
+      - "user"
+      summary: "Delete all users"
+      description: ""
+      operationId: "deleteAllUsers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        default:
+          description: "All users deleted succsesfully"
+          
+  /api/users/{userId}:
+    get:
+      tags:
+      - "user"
+      summary: "Get user by user Id"
+      description: ""
+      operationId: "getUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The user Id that needs to be fetched."
+        required: true
+        type: "string"
+      responses:
+        "succes":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "null":
+          description: "User not found"
+          
+    put:
+      tags:
+      - "user"
+      summary: "Updated an existing user"
+      description: ""
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "userId of the user that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+            
+    delete:
+      tags:
+      - "user"
+      summary: "Delete user"
+      description: ""
+      operationId: "deleteUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The userId of the user that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "User Deleted succsessfully"
+            
+            
+definitions:
+  User:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+      name:
+        type: "string"
+      email:
+        type: "string"
+      age:
+        type: "number"
+      phoneNumber:
+        type: "number"
+      createdAt:
+        type: "object"
+        description: "User creation date"
+    xml:
+      name: "User"
+      
