@@ -48,8 +48,8 @@ class UserRoutes {
     deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { userId } = req.params;
-            yield User_1.default.findOneAndDelete({ userId });
-            res.json({ response: 'User Deleted succsessfully' });
+            const userDeleted = yield User_1.default.findOneAndDelete({ userId });
+            res.json(userDeleted);
         });
     }
     deleteAllUsers(req, res) {

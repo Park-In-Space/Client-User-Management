@@ -35,8 +35,8 @@ class UserRoutes{
 
     public async deleteUser(req: Request, res: Response): Promise<void>{
         const {userId} = req.params;
-        await User.findOneAndDelete({userId});
-        res.json({response: 'User Deleted succsessfully'});
+        const userDeleted = await User.findOneAndDelete({userId});
+        res.json(userDeleted);
     }
 
     public async deleteAllUsers(req: Request, res: Response): Promise<void>{
