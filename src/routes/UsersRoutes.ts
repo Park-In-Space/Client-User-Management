@@ -24,7 +24,7 @@ class UserRoutes{
     public async createUser(req: Request, res: Response): Promise<void>{
         const newUser = new User(req.body);
         await newUser.save();
-        res.json({data: newUser});
+        res.json(newUser);
     }
 
     public async updateUser(req: Request, res: Response): Promise<void>{

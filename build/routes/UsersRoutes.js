@@ -35,7 +35,7 @@ class UserRoutes {
         return __awaiter(this, void 0, void 0, function* () {
             const newUser = new User_1.default(req.body);
             yield newUser.save();
-            res.json({ data: newUser });
+            res.json(newUser);
         });
     }
     updateUser(req, res) {
