@@ -41,7 +41,7 @@ class UserRoutes{
 
     public async deleteAllUsers(req: Request, res: Response): Promise<void>{
         const users = await User.deleteMany();
-        res.json({response: 'All users deleted succsesfully'})
+        res.json(users);
     }
 
     routes(){
